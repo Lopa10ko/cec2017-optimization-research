@@ -12,6 +12,8 @@ dependencies = [
     "jupyter>=1.0.0",
     "ipykernel>=6.29.0",
     "cec2017 @ git+https://github.com/tilleyd/cec2017-py",
+    "scipy>=1.11.0",
+    "pandas>=2.0.0",
 ]
 
 [build-system]
@@ -20,4 +22,4 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["cec2017.benchmark*", "cec2017.visualization*"]
+include = ["cec2017.benchmark*", "cec2017.visualization*", "cec2017.optimization*"]
