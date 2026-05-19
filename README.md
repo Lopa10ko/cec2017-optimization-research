@@ -4,9 +4,9 @@ Comparative study of numerical optimization methods on the [CEC-2017](https://gi
 
 ---
 
-## Stage 1: Benchmark visualization
+## Stage 1: CEC-2017 benchmark visualization
 
-**Interactive f1-f10 explorer (GitHub Pages):** [https://lopa10ko.github.io/cec2017-optimization-research/cec_f1_f10.html](https://lopa10ko.github.io/cec2017-optimization-research/cec_f1_f10.html)
+**Interactive f1-f10 explorer:** [https://lopa10ko.github.io/cec2017-optimization-research/cec_f1_f10.html](https://lopa10ko.github.io/cec2017-optimization-research/cec_f1_f10.html)
 
 
 **Static gallery (f1–f10):**
@@ -19,8 +19,27 @@ Comparative study of numerical optimization methods on the [CEC-2017](https://gi
 | <img src="outputs/stage1/f7.png" width="450" alt="f7"/> | <img src="outputs/stage1/f8.png" width="450" alt="f8"/> |
 | <img src="outputs/stage1/f9.png" width="450" alt="f9"/> | <img src="outputs/stage1/f10.png" width="450" alt="f10"/> |
 
+---
 
-### Project structure
+## Stage 2: SciPy L-BFGS-B (planned)
+
+10 runs per function f1–f28 at $D = 10$ with random starts; table of best $f_{\min}$ in README and CSV under `outputs/stage2/`.
+
+---
+
+## Stage 3: PSO and GA (planned)
+
+PySwarms GlobalBestPSO and DEAP/PyGAD genetic algorithms; timing and boxplots under `outputs/stage3/`.
+
+---
+
+## Stage 4: Statistical comparison (planned)
+
+Nemenyi post-hoc test across methods from Stages 2–3; figures under `outputs/stage4/`.
+
+---
+
+## Project structure
 
 Layout adapted from the [cookiecutter-research-project](https://github.com/aeturrell/cookiecutter-research-project) data-science template. Included paths match this study; empty template folders (`data/`, `logs/`, `models/`, `paper/`) are omitted because artifacts live under `outputs/` and the benchmark is installed as a dependency.
 
@@ -41,14 +60,7 @@ cec2017-optimization-research/
         └── visualization/
 ```
 
-| Template path | This repo |
-|---------------|-----------|
-| `pyproject.toml`, `uv` | Yes |
-| `notebooks/`, `outputs/`, `src/<package>/` | Yes (`src/cec2017/`) |
-| `data/raw`, `intermediate`, `processed` | No — CEC-2017 from git dependency |
-| `logs/`, `models/`, `paper/`, `slides/` | No — not required for this coursework |
-
-### Reproducibility (Stage 1)
+## Reproducibility
 
 Requires [uv](https://docs.astral.sh/uv/).
 
@@ -62,20 +74,6 @@ uv sync
 # or run via:
 uv run jupyter notebook notebooks/experiments.ipynb
 ```
-
----
-
-## Stage 2: SciPy L-BFGS-B (planned)
-
-10 runs per function f1–f28 at $D = 10$ with random starts; table of best $f_{\min}$ in README and CSV under `outputs/stage2/`.
-
-## Stage 3: PSO and GA (planned)
-
-PySwarms GlobalBestPSO and DEAP/PyGAD genetic algorithms; timing and boxplots under `outputs/stage3/`.
-
-## Stage 4: Statistical comparison (planned)
-
-Nemenyi post-hoc test across methods from Stages 2–3; figures under `outputs/stage4/`.
 
 ---
 
