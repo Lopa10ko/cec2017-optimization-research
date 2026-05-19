@@ -1,0 +1,23 @@
+[project]
+name = "cec2017-optimization-research"
+version = "0.1.0"
+description = "CEC-2017 optimization methods comparison research"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "numpy>=1.26.0,<3",
+    "plotly>=5.18.0",
+    "kaleido>=0.2.1",
+    "jupyter>=1.0.0",
+    "ipykernel>=6.29.0",
+    "cec2017 @ git+https://github.com/tilleyd/cec2017-py",
+]
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["cec2017.benchmark*", "cec2017.visualization*"]
