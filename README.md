@@ -255,12 +255,9 @@ Statistically compare **SciPy** (Stage 2), **PSO** (Stage 3a), **DEAP**, and **P
 
 **Visualizations:**
 
-| | |
-|:---:|:---:|
-| <img src="outputs/stage4/nemenyi_cd_diagram.png" width="450" alt="Nemenyi CD diagram"/> | <img src="outputs/stage4/nemenyi_pvalue_heatmap.png" width="450" alt="Nemenyi p-value heatmap"/> |
+<img src="outputs/stage4/nemenyi_cd_diagram.png" width="100%" alt="Critical difference diagram"/>
 
-The CD diagram connects methods whose average ranks fall within one critical difference; the heatmap highlights strong pairwise differences (green = large $p$, red = small $p$).
-
+<img src="outputs/stage4/nemenyi_pvalue_heatmap.png" width="100%" alt="Nemenyi p-value heatmap"/>
 
 ---
 
