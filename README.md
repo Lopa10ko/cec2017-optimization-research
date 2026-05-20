@@ -6,8 +6,7 @@ Comparative study of numerical optimization methods on the [CEC-2017](https://gi
 
 ## Stage 1: CEC-2017 benchmark visualization
 
-**Interactive f1-f10 explorer:** [https://lopa10ko.github.io/cec2017-optimization-research/cec_f1_f10.html](https://lopa10ko.github.io/cec2017-optimization-research/cec_f1_f10.html)
-
+**Interactive f1–f10 explorer:** [https://lopa10ko.github.io/cec2017-optimization-research/cec_f1_f10.html](https://lopa10ko.github.io/cec2017-optimization-research/cec_f1_f10.html)
 
 **Static gallery (f1–f10):**
 
@@ -25,7 +24,7 @@ Comparative study of numerical optimization methods on the [CEC-2017](https://gi
 
 ### Goal
 
-Evaluate a classical **gradient-based** method on the full CEC-2017 set (f1–f28) at $D = 10$. SciPy’s bound-constrained solver exploits local curvature but is sensitive to starting points on multimodal landscapes—this baseline motivates population-based methods in Stage 3.
+Evaluate a classical **gradient-based** method on the full CEC-2017 set (f1–f28) at $D = 10$. SciPy's bound-constrained solver exploits local curvature but is sensitive to starting points on multimodal landscapes—this baseline motivates population-based methods in Stage 3.
 
 ### Method
 
@@ -37,7 +36,44 @@ Evaluate a classical **gradient-based** method on the full CEC-2017 set (f1–f2
 
 ### Results
 
-Full table (columns = functions, rows = runs, values = $f_{\min}$):
+Each run records **$f_{\min}$** and **wall-clock time** (seconds). The notebook writes CSVs, aggregate boxplots, per-function $\log(1 + f_{\min})$ plots, and (below) the raw $f_{\min}$ table.
+
+| Artifact | Description |
+|----------|-------------|
+| [outputs/stage2/scipy_fmin.csv](outputs/stage2/scipy_fmin.csv) | Best objective per run × function |
+| [outputs/stage2/scipy_time.csv](outputs/stage2/scipy_time.csv) | Runtime (s) per run × function |
+| [outputs/stage2/scipy_fmin_boxplot.html](outputs/stage2/scipy_fmin_boxplot.html) | Interactive linear $f_{\min}$ boxplot (all functions) |
+| [outputs/stage2/scipy_fmin_log1p_boxplot.html](outputs/stage2/scipy_fmin_log1p_boxplot.html) | Interactive $\log(1 + f_{\min})$ boxplot |
+| [outputs/stage2/scipy_time_boxplot.html](outputs/stage2/scipy_time_boxplot.html) | Interactive runtime boxplot |
+
+**Aggregate boxplots** ($\log(1 + f_{\min})$ and runtime):
+
+| | |
+|:---:|:---:|
+| <img src="outputs/stage2/scipy_fmin_log1p_boxplot.png" width="450" alt="SciPy log1p f_min"/> | <img src="outputs/stage2/scipy_time_boxplot.png" width="450" alt="SciPy runtime"/> |
+
+**Per-function $\log(1 + f_{\min})$ (SciPy)** — `outputs/stage2/scipy_fmin_log1p_by_function/`
+
+| | |
+|:---:|:---:|
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f1.png" width="450" alt="SciPy f1"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f2.png" width="450" alt="SciPy f2"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f3.png" width="450" alt="SciPy f3"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f4.png" width="450" alt="SciPy f4"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f5.png" width="450" alt="SciPy f5"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f6.png" width="450" alt="SciPy f6"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f7.png" width="450" alt="SciPy f7"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f8.png" width="450" alt="SciPy f8"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f9.png" width="450" alt="SciPy f9"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f10.png" width="450" alt="SciPy f10"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f11.png" width="450" alt="SciPy f11"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f12.png" width="450" alt="SciPy f12"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f13.png" width="450" alt="SciPy f13"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f14.png" width="450" alt="SciPy f14"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f15.png" width="450" alt="SciPy f15"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f16.png" width="450" alt="SciPy f16"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f17.png" width="450" alt="SciPy f17"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f18.png" width="450" alt="SciPy f18"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f19.png" width="450" alt="SciPy f19"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f20.png" width="450" alt="SciPy f20"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f21.png" width="450" alt="SciPy f21"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f22.png" width="450" alt="SciPy f22"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f23.png" width="450" alt="SciPy f23"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f24.png" width="450" alt="SciPy f24"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f25.png" width="450" alt="SciPy f25"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f26.png" width="450" alt="SciPy f26"/> |
+| <img src="outputs/stage2/scipy_fmin_log1p_by_function/f27.png" width="450" alt="SciPy f27"/> | <img src="outputs/stage2/scipy_fmin_log1p_by_function/f28.png" width="450" alt="SciPy f28"/> |
+
+### $f_{\min}$ table (raw values)
+
+Columns = functions, rows = runs:
 
 |  | f1 | f2 | f3 | f4 | f5 | f6 | f7 | f8 | f9 | f10 | f11 | f12 | f13 | f14 | f15 | f16 | f17 | f18 | f19 | f20 | f21 | f22 | f23 | f24 | f25 | f26 | f27 | f28 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -52,15 +88,131 @@ Full table (columns = functions, rows = runs, values = $f_{\min}$):
 | run_9 | 100.0004 | 200.0001 | 300.0 | 400.0 | 699.9815 | 691.6342 | 1931.0726 | 922.377 | 1534.2169 | 2781.2796 | 1121.889 | 1701.4264 | 1972.1477 | 1444.1481 | 1981.5941 | 2124.6153 | 2174.3836 | 2199.1343 | 3982.3376 | 2389.0576 | 2437.6002 | 4580.7875 | 4117.006 | 2923.6317 | 2944.8614 | 4343.9078 | 3459.0574 | 3411.8217 |
 | run_10 | 100.0004 | 200.0 | 300.0 | 400.0 | 935.7509 | 686.0224 | 1395.2464 | 944.2673 | 7425.4635 | 2630.3973 | 1165.6665 | 1555.5581 | 1524.4745 | 1582.3305 | 1542.2915 | 2407.5692 | 2312.6976 | 1913.651 | 1930.8493 | 2649.2601 | 2542.3558 | 2308.6549 | 2788.3279 | 2601.5299 | 2899.585 | 5039.0695 | 3503.5797 | 3411.8217 |
 
-CSV: [outputs/stage2/scipy_fmin.csv](outputs/stage2/scipy_fmin.csv)
-
 Unimodal functions (f1–f4) show stable $f_{\min}$ across runs; hybrid and composition functions (e.g. f9, f22, f26) exhibit larger run-to-run spread, reflecting sensitivity to random restarts.
 
 ---
 
-## Stage 3: PSO and GA (planned)
+## Stage 3a: PySwarms PSO
 
-PySwarms GlobalBestPSO and DEAP/PyGAD genetic algorithms; timing and boxplots under `outputs/stage3/`.
+### Goal
+
+Population-based search on f1–f28 at $D = 10$ using **GlobalBestPSO** ([PySwarms](https://pyswarms.readthedocs.io/)).
+
+### Experimental design
+
+Per independent run, cognitive/social/inertia coefficients follow the assignment:
+
+- $c_1 = \mathrm{round}(0.5 \cdot U(0,1) + 0.25,\ 2)$
+- $c_2 = \mathrm{round}(0.3 \cdot U(0,1) + 0.1,\ 2)$
+- $w = 0.9$
+
+Fixed settings: **10 particles**, **1000 iterations**, bounds $[-100, 100]^{10}$, 10 runs per function.
+
+### Results
+
+CSVs: `outputs/stage3/pso_fmin.csv`, `pso_time.csv`.
+
+**Aggregate** — $\log(1 + f_{\min})$: [HTML](outputs/stage3/pso_fmin_log1p_boxplot.html) · runtime: [HTML](outputs/stage3/pso_time_boxplot.html)
+
+| | |
+|:---:|:---:|
+| <img src="outputs/stage3/pso_fmin_log1p_boxplot.png" width="450" alt="PSO log1p aggregate"/> | <img src="outputs/stage3/pso_time_boxplot.png" width="450" alt="PSO runtime"/> |
+
+**Per-function $\log(1 + f_{\min})$ (PSO)** — `outputs/stage3/pso_fmin_log1p_by_function/`
+
+| | |
+|:---:|:---:|
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f1.png" width="450" alt="PSO f1"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f2.png" width="450" alt="PSO f2"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f3.png" width="450" alt="PSO f3"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f4.png" width="450" alt="PSO f4"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f5.png" width="450" alt="PSO f5"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f6.png" width="450" alt="PSO f6"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f7.png" width="450" alt="PSO f7"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f8.png" width="450" alt="PSO f8"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f9.png" width="450" alt="PSO f9"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f10.png" width="450" alt="PSO f10"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f11.png" width="450" alt="PSO f11"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f12.png" width="450" alt="PSO f12"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f13.png" width="450" alt="PSO f13"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f14.png" width="450" alt="PSO f14"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f15.png" width="450" alt="PSO f15"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f16.png" width="450" alt="PSO f16"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f17.png" width="450" alt="PSO f17"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f18.png" width="450" alt="PSO f18"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f19.png" width="450" alt="PSO f19"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f20.png" width="450" alt="PSO f20"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f21.png" width="450" alt="PSO f21"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f22.png" width="450" alt="PSO f22"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f23.png" width="450" alt="PSO f23"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f24.png" width="450" alt="PSO f24"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f25.png" width="450" alt="PSO f25"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f26.png" width="450" alt="PSO f26"/> |
+| <img src="outputs/stage3/pso_fmin_log1p_by_function/f27.png" width="450" alt="PSO f27"/> | <img src="outputs/stage3/pso_fmin_log1p_by_function/f28.png" width="450" alt="PSO f28"/> |
+
+---
+
+## Stage 3b: Genetic algorithms (DEAP + PyGAD)
+
+Two GA implementations (**DEAP** and **PyGAD**) each produce CSVs, aggregate boxplots, and per-function $\log(1 + f_{\min})$ plots.
+
+### DEAP (`DeapGAOptimizer`)
+
+| Hyperparameter | Value |
+|----------------|-------|
+| Population size | 50 |
+| Generations | 100 |
+| Crossover probability | 0.8 (blend, $\alpha=0.5$) |
+| Mutation probability | 0.2 (Gaussian, $\sigma=20$, per-gene $p=0.2$) |
+| Selection | Tournament, size 3 |
+| Bounds | Clip to $[-100, 100]^{10}$ |
+
+CSVs: `outputs/stage3/deap_fmin.csv`, `deap_time.csv`.
+
+| | |
+|:---:|:---:|
+| <img src="outputs/stage3/deap_fmin_log1p_boxplot.png" width="450" alt="DEAP log1p aggregate"/> | <img src="outputs/stage3/deap_time_boxplot.png" width="450" alt="DEAP runtime"/> |
+
+**Per-function $\log(1 + f_{\min})$ (DEAP)** — `outputs/stage3/deap_fmin_log1p_by_function/`
+
+| | |
+|:---:|:---:|
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f1.png" width="450" alt="DEAP f1"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f2.png" width="450" alt="DEAP f2"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f3.png" width="450" alt="DEAP f3"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f4.png" width="450" alt="DEAP f4"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f5.png" width="450" alt="DEAP f5"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f6.png" width="450" alt="DEAP f6"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f7.png" width="450" alt="DEAP f7"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f8.png" width="450" alt="DEAP f8"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f9.png" width="450" alt="DEAP f9"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f10.png" width="450" alt="DEAP f10"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f11.png" width="450" alt="DEAP f11"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f12.png" width="450" alt="DEAP f12"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f13.png" width="450" alt="DEAP f13"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f14.png" width="450" alt="DEAP f14"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f15.png" width="450" alt="DEAP f15"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f16.png" width="450" alt="DEAP f16"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f17.png" width="450" alt="DEAP f17"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f18.png" width="450" alt="DEAP f18"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f19.png" width="450" alt="DEAP f19"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f20.png" width="450" alt="DEAP f20"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f21.png" width="450" alt="DEAP f21"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f22.png" width="450" alt="DEAP f22"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f23.png" width="450" alt="DEAP f23"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f24.png" width="450" alt="DEAP f24"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f25.png" width="450" alt="DEAP f25"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f26.png" width="450" alt="DEAP f26"/> |
+| <img src="outputs/stage3/deap_fmin_log1p_by_function/f27.png" width="450" alt="DEAP f27"/> | <img src="outputs/stage3/deap_fmin_log1p_by_function/f28.png" width="450" alt="DEAP f28"/> |
+
+### PyGAD (`PyGADOptimizer`)
+
+| Hyperparameter | Value |
+|----------------|-------|
+| `sol_per_pop` | 50 |
+| `num_generations` | 100 |
+| `num_parents_mating` | 25 |
+| `gene_space` | $[-100, 100]$ per gene |
+
+CSVs: `outputs/stage3/pygad_fmin.csv`, `pygad_time.csv`.
+
+| | |
+|:---:|:---:|
+| <img src="outputs/stage3/pygad_fmin_log1p_boxplot.png" width="450" alt="PyGAD log1p aggregate"/> | <img src="outputs/stage3/pygad_time_boxplot.png" width="450" alt="PyGAD runtime"/> |
+
+**Per-function $\log(1 + f_{\min})$ (PyGAD)** — `outputs/stage3/pygad_fmin_log1p_by_function/`
+
+| | |
+|:---:|:---:|
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f1.png" width="450" alt="PyGAD f1"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f2.png" width="450" alt="PyGAD f2"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f3.png" width="450" alt="PyGAD f3"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f4.png" width="450" alt="PyGAD f4"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f5.png" width="450" alt="PyGAD f5"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f6.png" width="450" alt="PyGAD f6"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f7.png" width="450" alt="PyGAD f7"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f8.png" width="450" alt="PyGAD f8"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f9.png" width="450" alt="PyGAD f9"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f10.png" width="450" alt="PyGAD f10"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f11.png" width="450" alt="PyGAD f11"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f12.png" width="450" alt="PyGAD f12"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f13.png" width="450" alt="PyGAD f13"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f14.png" width="450" alt="PyGAD f14"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f15.png" width="450" alt="PyGAD f15"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f16.png" width="450" alt="PyGAD f16"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f17.png" width="450" alt="PyGAD f17"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f18.png" width="450" alt="PyGAD f18"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f19.png" width="450" alt="PyGAD f19"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f20.png" width="450" alt="PyGAD f20"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f21.png" width="450" alt="PyGAD f21"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f22.png" width="450" alt="PyGAD f22"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f23.png" width="450" alt="PyGAD f23"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f24.png" width="450" alt="PyGAD f24"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f25.png" width="450" alt="PyGAD f25"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f26.png" width="450" alt="PyGAD f26"/> |
+| <img src="outputs/stage3/pygad_fmin_log1p_by_function/f27.png" width="450" alt="PyGAD f27"/> | <img src="outputs/stage3/pygad_fmin_log1p_by_function/f28.png" width="450" alt="PyGAD f28"/> |
+
 
 ---
 
@@ -83,8 +235,8 @@ cec2017-optimization-research/
 ├── outputs/
 │   ├── stage1/                 # 3D surface plots (Stage 1)
 │   ├── stage2/                 # SciPy minimize tables
-│   ├── stage3/                 # PSO / GA tables + boxplots (planned)
-│   └── stage4/                 # Nemenyi test outputs (planned)
+│   ├── stage3/                 # PSO / GA tables + boxplots
+│   └── stage4/                 # Nemenyi test outputs
 └── src/
     └── cec2017/
         ├── benchmark/
