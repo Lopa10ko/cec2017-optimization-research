@@ -216,9 +216,51 @@ CSVs: `outputs/stage3/pygad_fmin.csv`, `pygad_time.csv`.
 
 ---
 
-## Stage 4: Statistical comparison (planned)
+## Stage 4: Friedman + Nemenyi post-hoc test
 
-Nemenyi post-hoc test across methods from Stages 2–3; figures under `outputs/stage4/`.
+### Goal
+
+Statistically compare **SciPy** (Stage 2), **PSO** (Stage 3a), **DEAP**, and **PyGAD** (Stage 3b) on the same $10 \times 28$ benchmark design. We first test whether the four methods differ overall (Friedman test); if so, pairwise differences are assessed with the **Nemenyi post-hoc test** ([GeeksforGeeks walkthrough](https://www.geeksforgeeks.org/how-to-perform-the-nemenyi-test-in-python/), implemented via [scikit-posthocs](https://scikit-posthocs.readthedocs.io/)).
+
+### Method
+
+1. For each function $f_j$ and method, take the **mean** $f_{\min}$ over the 10 independent runs (tables from Stages 2–3).
+2. **Friedman test** (`scipy.stats.friedmanchisquare`) on the $28 \times 4$ matrix (rows = functions, columns = methods), matching the blocked layout in the GeeksforGeeks example (subjects = functions, groups = methods).
+3. **Nemenyi post-hoc** (`scikit_posthocs.posthoc_nemenyi_friedman`) for pairwise $p$-values at $\alpha = 0.05$.
+4. **Critical difference diagram** — rendered with the [hfawaz/cd-diagram](https://github.com/hfawaz/cd-diagram) pipeline (Friedman test, Wilcoxon signed-rank pairwise tests, Holm correction, Demsar-style CD plot). Pairwise **Nemenyi** $p$-values remain in the heatmap (Plotly), per the assignment link.
+
+### Results
+
+| Artifact | Description |
+|----------|-------------|
+| [outputs/stage4/friedman_summary.csv](outputs/stage4/friedman_summary.csv) | Friedman statistic, $p$-value, CD, $\alpha$ |
+| [outputs/stage4/nemenyi_means.csv](outputs/stage4/nemenyi_means.csv) | Mean $f_{\min}$ per function × method |
+| [outputs/stage4/nemenyi_average_ranks.csv](outputs/stage4/nemenyi_average_ranks.csv) | Average rank per method (lower is better) |
+| [outputs/stage4/nemenyi_pvalues.csv](outputs/stage4/nemenyi_pvalues.csv) | Pairwise Nemenyi $p$-values |
+| [outputs/stage4/nemenyi_cd_diagram.html](outputs/stage4/nemenyi_cd_diagram.html) | Interactive critical-difference diagram |
+| [outputs/stage4/nemenyi_pvalue_heatmap.html](outputs/stage4/nemenyi_pvalue_heatmap.html) | Interactive pairwise $p$-value heatmap |
+
+**Friedman test:** $\chi^2 = 55.41$, $p \approx 5.6 \times 10^{-12}$ — reject the null that all four methods perform equally across f1–f28.
+
+**Average ranks** (1 = best):
+
+| Method | Average rank |
+|--------|----------------|
+| DEAP | 1.57 |
+| SciPy | 2.11 |
+| PSO | 2.32 |
+| PyGAD | 4.00 |
+
+**Critical difference:** $\mathrm{CD} \approx 0.89$ at $\alpha = 0.05$. DEAP, SciPy, and PSO are not significantly separated from each other at this level (pairwise Nemenyi $p > 0.05$), while **PyGAD** is significantly worse than all three ($p \ll 0.05$).
+
+**Visualizations:**
+
+| | |
+|:---:|:---:|
+| <img src="outputs/stage4/nemenyi_cd_diagram.png" width="450" alt="Nemenyi CD diagram"/> | <img src="outputs/stage4/nemenyi_pvalue_heatmap.png" width="450" alt="Nemenyi p-value heatmap"/> |
+
+The CD diagram connects methods whose average ranks fall within one critical difference; the heatmap highlights strong pairwise differences (green = large $p$, red = small $p$).
+
 
 ---
 
@@ -239,6 +281,7 @@ cec2017-optimization-research/
 │   └── stage4/                 # Nemenyi test outputs
 └── src/
     └── cec2017/
+        ├── analysis/
         ├── benchmark/
         ├── visualization/
         └── optimization/
