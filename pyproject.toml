@@ -18,6 +18,8 @@ dependencies = [
     "deap>=1.4.0",
     "pygad>=3.0.0",
     "scikit-posthocs>=0.9.0",
+    "matplotlib>=3.8.0",
+    "networkx>=3.0",
 ]
 
 [build-system]
