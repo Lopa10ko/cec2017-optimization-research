@@ -261,6 +261,27 @@ Statistically compare **SciPy** (Stage 2), **PSO** (Stage 3a), **DEAP**, and **P
 
 ---
 
+## Discussion and conclusions
+
+Across all four stages, the central finding is that **no single optimizer dominates CEC-2017 at $D = 10$ under a fixed evaluation budget**. The Friedman test rejects equal performance ($\chi^2 \approx 55.4$, $p \ll 0.05$), yet the Nemenyi post-hoc analysis shows that the top three methods—DEAP (average rank 1.57), SciPy (2.11), and PSO (2.32)—are not significantly separated at $\alpha = 0.05$ (CD $\approx 0.89$). PyGAD ranks last on every function (average rank 4.00) and is significantly worse than all three alternatives. Aggregate statistics therefore hide substantial **function-type dependence**: each method is better suited to particular landscape classes than to the benchmark as a whole.
+
+Breaking results down by standard CEC-2017 groups clarifies this specialization (mean $f_{\min}$ per function from [`outputs/stage4/nemenyi_means.csv`](outputs/stage4/nemenyi_means.csv); a method **wins** a function when it has the lowest mean $f_{\min}$ among the four optimizers):
+
+| CEC group | Best method (wins) | Average rank (lower is better) |
+|-----------|-------------------|--------------------------------|
+| Unimodal (f1–f3) | SciPy (3/3) | SciPy 1.00, DEAP 2.33, PSO 2.67, PyGAD 4.00 |
+| Simple multimodal (f4–f10) | DEAP (6/7), SciPy (1/7) | DEAP 1.14, PSO 2.14, SciPy 2.71, PyGAD 4.00 |
+| Hybrid (f11–f20) | SciPy (7/10), DEAP (3/10) | SciPy 1.60, DEAP 2.00, PSO 2.40, PyGAD 4.00 |
+| Composition (f21–f28) | DEAP (7/8), SciPy (1/8) | DEAP 1.12, PSO 2.25, SciPy 2.62, PyGAD 4.00 |
+
+On **unimodal** functions (f1–f3), SciPy wins all three cases and holds the lowest average rank (1.0), consistent with gradient-based local search on smooth, bound-constrained basins. On **simple multimodal** functions (f4–f10), DEAP leads on six of seven functions, while SciPy takes the remaining one. **Hybrid** functions (f11–f20) split between SciPy (seven wins) and DEAP (three wins)—SciPy excels on several early hybrids where local structure remains exploitable (e.g. f11–f15, f18–f19), whereas DEAP is competitive on the remainder (f16–f17, f20). On **composition** functions (f21–f28), DEAP again dominates (seven of eight wins). PSO never achieves the best mean $f_{\min}$ on any individual function but remains a consistent second-tier metaheuristic (overall rank 2.32). PyGAD produces catastrophic objective values on multiple hybrids and compositions, as visible in the Stage 3 per-function $\log(1 + f_{\min})$ boxplots, and is clearly misaligned with the current hyperparameter settings. Stage 1 surface plots offer complementary intuition: smooth unimodal landscapes favour fast local refinement, while multimodal and compositional structure rewards population-based exploration.
+
+**Convergence rate—measured here as wall-clock time per run—varies by more than two orders of magnitude** across methods under the chosen iteration limits. Median runtime per (run, function) is approximately **0.03 s** for SciPy, **0.18 s** for DEAP, **0.60 s** for PSO, and **3.4 s** for PyGAD. SciPy converges fastest but only when the landscape permits effective local descent; among metaheuristics, DEAP delivers the best accuracy–cost trade-off, achieving the lowest average rank at roughly one-third the wall time of PSO. PSO is slower than DEAP without matching its solution quality in this study. PyGAD is the slowest method and the least accurate, offering poor cost–benefit regardless of function type.
+
+In practice, optimizer choice should follow **landscape type and computational budget**, not a single global ranking. Gradient-based SciPy is appropriate for unimodal or locally smooth problems when restarts or multi-start schemes are affordable; DEAP is preferable for multimodal and compositional CEC functions where population diversity matters; PSO may serve as a simpler population baseline when GA tuning is unavailable, accepting lower accuracy per unit time. These conclusions are indicative: all experiments use $D = 10$, fixed hyperparameters, and ten independent runs per function. Extending dimensionality, tuning metaheuristic parameters, or increasing the evaluation budget could shift the relative rankings reported here.
+
+---
+
 ## Project structure
 
 Layout adapted from the [cookiecutter-research-project](https://github.com/aeturrell/cookiecutter-research-project) data-science template. Included paths match this study; empty template folders (`data/`, `logs/`, `models/`, `paper/`) are omitted because artifacts live under `outputs/` and the benchmark is installed as a dependency.
